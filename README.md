@@ -130,3 +130,35 @@ while($d=mysqli_fetch_array($data)){
 </body>
 
 </html>
+
+# koneksi.php
+
+<?php
+
+$conn=mysqli_connect("localhost","root","","db_toko");
+
+if(!$conn){
+die("Koneksi gagal");
+}
+
+?>
+
+# simpan.php 
+
+<?php
+
+include "koneksi.php";
+
+$id=$_POST['id_barang'];
+
+$jumlah=$_POST['jumlah'];
+
+$tanggal=$_POST['tanggal'];
+
+mysqli_query($conn,"INSERT INTO penjualan(id_barang,jumlah,tanggal)
+
+VALUES('$id','$jumlah','$tanggal')");
+
+header("location:index.php");
+
+?>
